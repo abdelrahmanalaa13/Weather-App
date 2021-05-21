@@ -4,9 +4,10 @@ import { WeatherHomeComponent } from './components/weather-home/weather-home.com
 import { WeatherRoutingModule } from './weather-routing.module';
 import { WeatherHeaderComponent } from './components/weather-header/weather-header.component';
 import { WeatherDetailsComponent } from './components/weather-details/weather-details.component';
+import { WeatherSliderComponent } from './components/weather-slider/weather-slider.component';
 
 @NgModule({
-  declarations: [WeatherHomeComponent, WeatherHeaderComponent, WeatherDetailsComponent],
+  declarations: [WeatherHomeComponent, WeatherHeaderComponent, WeatherDetailsComponent, WeatherSliderComponent],
   imports: [CommonModule, WeatherRoutingModule],
 })
 export class WeatherModule {}
