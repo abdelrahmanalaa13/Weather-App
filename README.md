@@ -1,6 +1,6 @@
 # WeatherApp
 
-Simple weather web application that displays the current temperature based on user location
+Simple weather web application that displays the current temperature based on user location using Angular
 
 # App feature set
 
