@@ -13,8 +13,10 @@ Simple weather web application that displays the current temperature based on us
 - Display the daily forecast.
 - Display city name.
 
-## Development server
+## Development init
+Run `npm i` for installing the needed node packages
 
+## Development server
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Build
