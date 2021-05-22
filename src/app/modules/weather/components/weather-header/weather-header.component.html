@@ -2,7 +2,7 @@
   <h1 class="title">INSTAWEATHER</h1>
 
   <div class="scale-toggle">
-    <button>C</button>
-    <button>F</button>
+    <button [class.active]="selectedScale === TempScales.celsius" (click)="changeScale(TempScales.celsius)">C</button>
+    <button [class.active]="selectedScale === TempScales.fahrenheit" (click)="changeScale(TempScales.fahrenheit)">F</button>
   </div>
 </section>

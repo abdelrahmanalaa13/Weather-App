@@ -1,5 +1,18 @@
-<div class="container">
-  <app-weather-header></app-weather-header>
-  <app-weather-details></app-weather-details>
-  <app-weather-slider></app-weather-slider>
+<div class="container" *ngIf="currantForecast">
+  <app-weather-header
+    [selectedScale]="selectedScale"
+    (changeSelectedScale)="convertScale($event)"
+  ></app-weather-header>
+  <app-weather-details
+    [forecast]="currantForecast"
+    [selectedScale]="selectedScale"
+    [cityName]="currentCity"
+  ></app-weather-details>
+  <app-weather-slider
+    [isHourly]="isHourly"
+    [selectedScale]="selectedScale"
+    [details]="forecastDetails"
+    (sliderModeEmit)="changeSliderMode($event)"
+    (selectItemEmit)="setCurrantForecast($event)"
+  ></app-weather-slider>
 </div>

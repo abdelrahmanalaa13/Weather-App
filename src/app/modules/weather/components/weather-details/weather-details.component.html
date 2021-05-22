@@ -1,8 +1,8 @@
 <section class="main-details">
   <div>
     <div class="city-details">
-      <h2>New Cairo</h2>
-      <p>Friday 20, 2020</p>
+      <h2>{{ cityName }}</h2>
+      <p>{{ forecast.time * 1000 | date: "fullDate" }}</p>
     </div>
     <div class="state">
       <svg
@@ -33,12 +33,17 @@
           fill="white"
         />
       </svg>
-      <h3>Cloudy</h3>
+      <h3>{{ forecast.summary }}</h3>
     </div>
   </div>
   <div class="temp-details">
-    <p class="temp-currnte">27&#176;</p>
-    <p class="temp-rang">88&#176; / <span>99&#176;</span></p>
-    <p class="temp-note">Cloudy throughout the day</p>
+    <p class="temp-currnte">
+      {{ forecast.temperature | scaleConvertor: selectedScale }}&#176;
+    </p>
+    <p class="temp-rang">
+      {{ forecast.temperatureLow| scaleConvertor: selectedScale }}&#176; /
+      <span>{{ forecast.temperatureHigh| scaleConvertor: selectedScale }}&#176;</span>
+    </p>
+    <p class="temp-note">{{ forecast.daySummary }}</p>
   </div>
 </section>
