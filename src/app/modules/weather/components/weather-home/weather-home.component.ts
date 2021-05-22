@@ -48,10 +48,10 @@ export class WeatherHomeComponent implements OnInit {
   getWeatherDetails() {
     forkJoin([
       this.weatherBackendService.getForecast(this.latitude, this.longitude),
-      // this.weatherBackendService.getLocation(),
-    ]).subscribe(([forecast]) => { //, locationDetails
+      this.weatherBackendService.getLocation(),
+    ]).subscribe(([forecast, locationDetails]) => {
       this.setForecast(forecast);
-      // this.setCity(locationDetails);
+      this.setCity(locationDetails);
     });
   }
 

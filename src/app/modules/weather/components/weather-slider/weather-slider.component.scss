@@ -33,9 +33,10 @@
         .time {
           font-size: 24px;
         }
-        svg {
+        .icon {
           margin: 15px 0 10px;
           width: 66px;
+          height: 66px;
         }
         .temp {
           font-size: 36px;
@@ -75,8 +76,9 @@
           .time {
             font-size: 16px;
           }
-          svg {
+          .icon {
             width: 40px;
+            height: 40px;
           }
           .temp {
             font-size: 20px;

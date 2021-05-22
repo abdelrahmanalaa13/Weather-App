@@ -22,8 +22,9 @@
   .state {
     width: fit-content;
     text-align: center;
-    svg {
+    .icon {
       width: 97px;
+      height: 97px;
     }
     h3 {
       padding-top: 16px;
@@ -73,8 +74,9 @@
       }
     }
     .state {
-      svg {
+      .icon {
         width: 60px;
+        height: 60px;
       }
       h3 {
         padding-top: 10px;
