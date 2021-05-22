@@ -6,6 +6,7 @@ import { WeatherHeaderComponent } from './components/weather-header/weather-head
 import { WeatherDetailsComponent } from './components/weather-details/weather-details.component';
 import { WeatherSliderComponent } from './components/weather-slider/weather-slider.component';
 import { ScaleConvertorPipe } from './pipes/scale-convertor.pipe';
+import { LoadingWeatherComponent } from './art/loading-weather/loading-weather.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { ScaleConvertorPipe } from './pipes/scale-convertor.pipe';
     WeatherDetailsComponent,
     WeatherSliderComponent,
     ScaleConvertorPipe,
+    LoadingWeatherComponent,
   ],
   imports: [CommonModule, WeatherRoutingModule],
 })

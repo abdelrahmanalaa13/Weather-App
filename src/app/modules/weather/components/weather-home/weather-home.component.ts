@@ -79,7 +79,7 @@ export class WeatherHomeComponent implements OnInit {
       currentDay.temperatureHigh,
       currentDay.summary,
     ];
-    this.forecastDetails.hourly[0].temperature =
+    this.forecastDetails.hourly.data[0].temperature =
       this.currantForecast.temperature;
   }
 

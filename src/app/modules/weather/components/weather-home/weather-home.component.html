@@ -1,18 +1,24 @@
-<div class="container" *ngIf="currantForecast">
-  <app-weather-header
-    [selectedScale]="selectedScale"
-    (changeSelectedScale)="convertScale($event)"
-  ></app-weather-header>
-  <app-weather-details
-    [forecast]="currantForecast"
-    [selectedScale]="selectedScale"
-    [cityName]="currentCity"
-  ></app-weather-details>
-  <app-weather-slider
-    [isHourly]="isHourly"
-    [selectedScale]="selectedScale"
-    [details]="forecastDetails"
-    (sliderModeEmit)="changeSliderMode($event)"
-    (selectItemEmit)="setCurrantForecast($event)"
-  ></app-weather-slider>
+<div class="container">
+  <ng-container *ngIf="currantForecast; else getLocationMsg">
+    <app-weather-header
+      [selectedScale]="selectedScale"
+      (changeSelectedScale)="convertScale($event)"
+    ></app-weather-header>
+    <app-weather-details
+      [forecast]="currantForecast"
+      [selectedScale]="selectedScale"
+      [cityName]="currentCity"
+    ></app-weather-details>
+    <app-weather-slider
+      [isHourly]="isHourly"
+      [selectedScale]="selectedScale"
+      [details]="forecastDetails"
+      (sliderModeEmit)="changeSliderMode($event)"
+      (selectItemEmit)="setCurrantForecast($event)"
+    ></app-weather-slider>
+  </ng-container>
 </div>
+
+<ng-template #getLocationMsg>
+  <app-loading-weather></app-loading-weather>
+</ng-template>
