@@ -47,15 +47,15 @@
         </svg>
         <p class="temp">
           <ng-container *ngIf="isHourly; else dailyTempRange">
-            {{ item.temperature | scaleConvertor: selectedScale }}&#176;
+            <span class="degree">{{ item.temperature | scaleConvertor: selectedScale }}</span>
           </ng-container>
         </p>
         <ng-template #dailyTempRange>
-          {{ item.temperatureLow | scaleConvertor: selectedScale }}&#176; /
-          <span
+          <span class="degree">{{ item.temperatureLow | scaleConvertor: selectedScale }}</span> /
+          <span class="degree"
             >{{
               item.temperatureHigh | scaleConvertor: selectedScale
-            }}&#176;</span
+            }}</span
           >
         </ng-template>
       </div>

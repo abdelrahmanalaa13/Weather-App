@@ -7,13 +7,13 @@ import { TempScales } from '../enums/temp-scales.enum';
 export class ScaleConvertorPipe implements PipeTransform {
   transform(value: number, unit: TempScales) {
     if (value) {
+      let temperature;
       if (unit === TempScales.celsius) {
-        const temperature = (value - 32) / 1.8;
-        return temperature.toFixed();
+        temperature = (value - 32) / 1.8;
       } else if (unit === TempScales.fahrenheit) {
-        return value.toFixed();
+        temperature = value;
       }
+      return temperature.toFixed();
     }
-    return value;
   }
 }

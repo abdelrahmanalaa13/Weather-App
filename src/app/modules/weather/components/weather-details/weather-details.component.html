@@ -37,12 +37,12 @@
     </div>
   </div>
   <div class="temp-details">
-    <p class="temp-currnte">
-      {{ forecast.temperature | scaleConvertor: selectedScale }}&#176;
+    <p class="temp-currant">
+      <span class="degree">{{ forecast.temperature | scaleConvertor: selectedScale }}</span>
     </p>
     <p class="temp-rang">
-      {{ forecast.temperatureLow| scaleConvertor: selectedScale }}&#176; /
-      <span>{{ forecast.temperatureHigh| scaleConvertor: selectedScale }}&#176;</span>
+      <span class="degree">{{ forecast.temperatureLow| scaleConvertor: selectedScale }}</span> /
+      <span class="degree">{{ forecast.temperatureHigh| scaleConvertor: selectedScale }}</span>
     </p>
     <p class="temp-note">{{ forecast.daySummary }}</p>
   </div>
