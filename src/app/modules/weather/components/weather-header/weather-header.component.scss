@@ -1,3 +1,5 @@
+@import "../../../../../assets/styles/shared";
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -29,6 +31,18 @@
           box-shadow: inset -100px 0 0 0 rgba(255, 255, 255, 0.25);
         }
       }
+    }
+  }
+}
+
+@media (max-width: $breakpoint-tablet) {
+  .header {
+    display: grid;
+    justify-content: center;
+    justify-items: center;
+    grid-row-gap: 15px;
+    h1.title {
+      font-size: 30px;
     }
   }
 }

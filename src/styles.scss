@@ -24,14 +24,3 @@
   font-family: "Work Sans";
   color: #ffffff;
 }
-
-// shared styles
-.degree{
-  position: relative;
-  &::after {
-    content: '\00B0';
-    position: absolute;
-    top: -35%;
-    right: -30%;
-  }
-}

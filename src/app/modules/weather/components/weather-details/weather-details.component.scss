@@ -1,3 +1,5 @@
+@import "../../../../../assets/styles/shared";
+
 .main-details {
   margin-top: 10%;
   display: flex;
@@ -20,6 +22,9 @@
   .state {
     width: fit-content;
     text-align: center;
+    svg {
+      width: 97px;
+    }
     h3 {
       padding-top: 16px;
       font-size: 30px;
@@ -34,7 +39,7 @@
         letter-spacing: 0.05em;
         font-weight: bold;
         letter-spacing: 0.05em;
-        margin-right: 10%;
+        margin-inline-end: 10%;
         .degree::after {
           font-size: 100px;
           top: -15%;
@@ -44,13 +49,79 @@
       &-rang {
         font-size: 48px;
         letter-spacing: 0.05em;
-        margin-right: 5%;
+        margin-inline-end: 5%;
       }
       &-note {
         font-weight: 600;
         text-align: center;
         font-size: 24px;
         padding-top: 22px;
+      }
+    }
+  }
+}
+
+@media (max-width: $breakpoint-tablet) {
+  .main-details {
+    .city-details {
+      h2 {
+        font-size: 30px;
+      }
+      p {
+        font-size: 14px;
+        padding-bottom: 20px;
+      }
+    }
+    .state {
+      svg {
+        width: 60px;
+      }
+      h3 {
+        padding-top: 10px;
+        font-size: 20px;
+      }
+    }
+    .temp-details {
+      .temp {
+        &-currant {
+          font-size: 50px;
+          .degree::after {
+            font-size: 35px;
+          }
+        }
+        &-rang {
+          font-size: 30px;
+          padding-top: 8px;
+        }
+        &-note {
+          font-size: 16px;
+          padding-top: 14px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: $breakpoint-mobile) {
+  .main-details {
+    display: grid;
+    justify-content: center;
+    row-gap: 20px;
+    .city-details {
+      text-align: center;
+    }
+    .state {
+      margin: auto;
+    }
+    .temp-details {
+      text-align: center;
+      .temp {
+        &-currant {
+          margin-inline-end: 0;
+        }
+        &-rang {
+          margin-inline-end: 5%;
+        }
       }
     }
   }

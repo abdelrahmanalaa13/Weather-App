@@ -1,0 +1,15 @@
+// Variables
+$breakpoint-desktop: 1008px;
+$breakpoint-tablet: 641px;
+$breakpoint-mobile: 360px;
+
+// shared styles
+.degree {
+  position: relative;
+  &::after {
+    content: "\00B0";
+    position: absolute;
+    top: -35%;
+    right: -30%;
+  }
+}

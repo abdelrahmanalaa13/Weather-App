@@ -6,8 +6,6 @@
     </div>
     <div class="state">
       <svg
-        width="97"
-        height="97"
         viewBox="0 0 97 97"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -41,8 +39,8 @@
       <span class="degree">{{ forecast.temperature | scaleConvertor: selectedScale }}</span>
     </p>
     <p class="temp-rang">
-      <span class="degree">{{ forecast.temperatureLow| scaleConvertor: selectedScale }}</span> /
-      <span class="degree">{{ forecast.temperatureHigh| scaleConvertor: selectedScale }}</span>
+      <span class="degree">{{ forecast.temperatureLow | scaleConvertor: selectedScale }}</span> /
+      <span class="degree">{{ forecast.temperatureHigh | scaleConvertor: selectedScale }}</span>
     </p>
     <p class="temp-note">{{ forecast.daySummary }}</p>
   </div>

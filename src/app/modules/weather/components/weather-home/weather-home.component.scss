@@ -1,8 +1,23 @@
+@import "../../../../../assets/styles/shared";
+
 .container {
-    background: url(../../../../../assets/images/background.jpg) no-repeat fixed center;
-    background-size: 100vw 100vh;
-    width: 100%;
-    min-height: 100vh;
-    padding: 40px 144px;
-    overflow: auto;
+  background: url(../../../../../assets/images/background.jpg) no-repeat fixed
+    center;
+  background-size: 100vw 100vh;
+  width: 100%;
+  min-height: 100vh;
+  padding: 40px 144px;
+  overflow: auto;
+}
+
+@media (max-width: $breakpoint-desktop) {
+  .container {
+    padding: 40px;
+  }
+}
+
+@media (max-width: $breakpoint-tablet) {
+  .container {
+    padding: 20px;
+  }
 }

@@ -17,13 +17,7 @@
               : (item.time * 1000 | date: (isHourly ? "HH:mm" : "MMM d"))
           }}
         </p>
-        <svg
-          width="66"
-          height="66"
-          viewBox="0 0 66 66"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
+        <svg viewBox="0 0 66 66" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
             d="M46.847 50.2824C57.1467 50.2824 65.4962 42.089 65.4962 31.982C65.4962 21.8749 57.1467 13.6816 46.847 13.6816C36.5472 13.6816 28.1977 21.8749 28.1977 31.982C28.1977 42.089 36.5472 50.2824 46.847 50.2824Z"
             fill="#FCB641"
@@ -47,16 +41,19 @@
         </svg>
         <p class="temp">
           <ng-container *ngIf="isHourly; else dailyTempRange">
-            <span class="degree">{{ item.temperature | scaleConvertor: selectedScale }}</span>
+            <span class="degree">{{
+              item.temperature | scaleConvertor: selectedScale
+            }}</span>
           </ng-container>
         </p>
         <ng-template #dailyTempRange>
-          <span class="degree">{{ item.temperatureLow | scaleConvertor: selectedScale }}</span> /
-          <span class="degree"
-            >{{
-              item.temperatureHigh | scaleConvertor: selectedScale
-            }}</span
-          >
+          <span class="degree">{{
+            item.temperatureLow | scaleConvertor: selectedScale
+          }}</span>
+          /
+          <span class="degree">{{
+            item.temperatureHigh | scaleConvertor: selectedScale
+          }}</span>
         </ng-template>
       </div>
     </div>

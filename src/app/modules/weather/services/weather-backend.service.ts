@@ -16,6 +16,6 @@ export class WeatherBackendService {
   }
 
   getLocation() {
-    return this._http.get('http://ipinfo.io?token=' + this.IpInfoToken);
+    return this._http.get('https://ipapi.co/json/');
   }
 }
