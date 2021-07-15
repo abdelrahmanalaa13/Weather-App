@@ -5,6 +5,7 @@
       <p>{{ forecast.time * 1000 | date: "fullDate" }}</p>
     </div>
     <div class="state">
+      <!-- setting the weather icon based on the forecast -->
       <img
         class="icon"
         [src]="'../../../../../assets/images/icons/' + forecast.icon + '.png'"

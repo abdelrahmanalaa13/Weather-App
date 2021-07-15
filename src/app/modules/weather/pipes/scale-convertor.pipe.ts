@@ -5,6 +5,12 @@ import { TempScales } from '../enums/temp-scales.enum';
   name: 'scaleConvertor',
 })
 export class ScaleConvertorPipe implements PipeTransform {
+  /**
+   * to convert the temp from/to celsius or fahrenheit
+   * @param value is the parsed temp
+   * @param unit fahrenheit or celsius
+   * @returns the nearest converted temp
+   */
   transform(value: number, unit: TempScales) {
     if (value) {
       let temperature;

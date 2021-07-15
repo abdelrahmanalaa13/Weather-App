@@ -8,11 +8,10 @@ import { WeatherDetails } from '../../models/weather-details.model';
   styleUrls: ['./weather-details.component.scss'],
 })
 export class WeatherDetailsComponent implements OnInit {
-  @Input() forecast: WeatherDetails;
+  @Input() forecast: WeatherDetails; // today's forecast
   @Input() cityName: string;
-  @Input() currentDayDetails: WeatherDetails;
   @Input() selectedScale: TempScales;
-  @Input() daySummary: string;
+  @Input() daySummary: string; // full day summary
   constructor() {}
 
   ngOnInit() {

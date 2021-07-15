@@ -6,11 +6,11 @@ import { WeatherDetails } from '../../models/weather-details.model';
 @Component({
   selector: 'app-weather-slider',
   templateUrl: './weather-slider.component.html',
-  styleUrls: ['./weather-slider.component.scss']
+  styleUrls: ['./weather-slider.component.scss'],
 })
 export class WeatherSliderComponent implements OnInit {
   @Input() isHourly: boolean;
-  @Input() details: Forecast;
+  @Input() details: Forecast; // all available Forecast's details
   @Input() selectedScale: TempScales;
   @Output() sliderModeEmit = new EventEmitter();
 
@@ -20,35 +20,30 @@ export class WeatherSliderComponent implements OnInit {
 
   sliderItems: WeatherDetails[];
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
-    this.setStartTime();
     this.setSliderItems();
   }
-
-  setStartTime() {
-    const currantTime = new Date(this.details.currently.time*1000);
-    if(this.isHourly){
-      currantTime.setHours(currantTime.getHours() + Math.round(currantTime.getMinutes()/60));
-      currantTime.setMinutes(0, 0, 0);
-    } else {
-      currantTime.setHours(0, 0, 0, 0)
-    }
-    this.nearestTime = currantTime;
-    
-    
-  }
-
+  /**
+   * Checking and applying the slider Items based on if it's hourly or daily
+   */
   setSliderItems() {
-    this.sliderItems = this.isHourly ? this.details.hourly.data : this.details.daily.data;
+    this.sliderItems = this.isHourly
+      ? this.details.hourly.data
+      : this.details.daily.data;
   }
 
+  /**
+   * 
+   * @param hourly boolean for applied type
+   * check if changed to make an action
+   * binding the boolean to home
+   */
   changeSliderMode(hourly) {
-    if(hourly !== this.isHourly){
+    if (hourly !== this.isHourly) {
       this.isHourly = hourly;
       this.sliderModeEmit.emit(hourly);
-      this.setStartTime();
       this.setSliderItems();
     }
   }

@@ -21,11 +21,11 @@ export class WeatherHomeComponent implements OnInit {
 
   isHourly = true;
 
-  forecastDetails: Forecast;
-  currantForecast: WeatherDetails;
-  currentDay: WeatherDetails;
+  forecastDetails: Forecast; // full weather available details
+  currantForecast: WeatherDetails; // currant Forecast by time
+  currentDay: WeatherDetails; // today's full Forecast data
 
-  currentCity: string;
+  currentCity: string; // city name
 
   constructor(
     private weatherBackendService: WeatherBackendService,
@@ -36,10 +36,14 @@ export class WeatherHomeComponent implements OnInit {
     this.getLocation();
   }
 
+  /**
+   * get the Current location coordinates (latitude, longitude) 
+   * check if not available to get the position, notify the user 
+   */
   getLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
-        if(!position) {
+        if (!position) {
           alert("Couldn't get your location");
           return;
         }
@@ -50,13 +54,21 @@ export class WeatherHomeComponent implements OnInit {
     }
   }
 
+  /**
+   * Request Forecast Data and the location data
+   * catch error used in this case to avoid forkJoin crashing
+   * forkJoin used get the full data at the same time
+   * checking if have any error
+   */
   getWeatherDetails() {
     const getForecast = this.weatherBackendService
       .getForecast(this.latitude, this.longitude)
       .pipe(catchError((error) => of(error)));
+
     const getLocation = this.weatherBackendService
       .getLocation(this.latitude, this.longitude)
       .pipe(catchError((error) => of(error)));
+
     forkJoin([getForecast, getLocation]).subscribe(
       ([forecast, locationDetails]) => {
         this.setForecast(forecast);
@@ -66,16 +78,33 @@ export class WeatherHomeComponent implements OnInit {
     );
   }
 
+  /**
+   * 
+   * @param forecast : the data that returned from the backend
+   */
   setForecast(forecast) {
+    if (!forecast.currently) {
+      alert("Couldn't get the forecast data");
+      return;
+    }
     this.forecastDetails = forecast;
     this.setCurrantForecast(forecast.currently);
   }
 
+  /**
+   * 
+   * @param forecast is the current time data for the moment
+   */
   setCurrantForecast(forecast) {
     this.currantForecast = forecast;
     this.SetForecastRange();
   }
 
+  /**
+   * Getting the Current Day from the Daily forecast list to use it's data
+   * setting the day lowest, highest temperature and the full day Summary
+   * setting the first element of the hourly list to be now
+   */
   SetForecastRange() {
     const currentDay = this.weatherService.getCurrentDay(
       this.forecastDetails,
@@ -94,16 +123,30 @@ export class WeatherHomeComponent implements OnInit {
       this.currantForecast.temperature;
   }
 
+  /**
+   * 
+   * @param locationDetails the full location details
+   * setting city from the results of the locationDetails
+   */
   setCity(locationDetails) {
-    if (locationDetails.results) {
-      this.currentCity = locationDetails.results[0].components.city;
+    if (!locationDetails.results || !locationDetails.results[0].components.city) {
+      alert("Couldn't get the your City's Name");
+      return;
     }
+    this.currentCity = locationDetails.results[0].components.city;
   }
-
+  /**
+   * 
+   * @param scale is the selected scale type to be switched to 
+   */
   convertScale(scale) {
     this.selectedScale = scale;
   }
 
+  /**
+   * 
+   * @param hourly boolean to toggle and change the slider list
+   */
   changeSliderMode(hourly) {
     this.isHourly = hourly;
     this.SetForecastRange();

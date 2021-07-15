@@ -14,7 +14,11 @@ export class WeatherHeaderComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  /**
+   * 
+   * @param scale selected to be converted to
+   * emit to home the new value
+   */
   changeScale(scale: TempScales) {
     if (this.selectedScale !== scale) {
       this.changeSelectedScale.emit(scale);

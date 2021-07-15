@@ -1,4 +1,5 @@
 <section class="slider">
+  <!-- toggle options to change mode -->
   <div class="details-options">
     <button [class.active]="isHourly" (click)="changeSliderMode(true)">
       Hourly
@@ -7,7 +8,9 @@
       Daily
     </button>
   </div>
+  <!-- outer-continer is for containing the scroll bar -->
   <div class="slider-outer-continer">
+    <!-- full list of the available forecasts -->
     <div class="slider-continer">
       <div *ngFor="let item of sliderItems; let i = index" class="slider-item">
         <p class="time">
@@ -17,6 +20,7 @@
               : (item.time * 1000 | date: (isHourly ? "HH:mm" : "MMM d"))
           }}
         </p>
+        <!-- setting icon based on the forecast -->
         <img
           class="icon"
           [src]="'../../../../../assets/images/icons/' + item.icon + '.png'"
@@ -29,6 +33,7 @@
             }}</span>
           </ng-container>
         </p>
+        <!-- if daily will have max and min values -->
         <ng-template #dailyTempRange>
           <span class="degree">{{
             item.temperatureLow | scaleConvertor: selectedScale

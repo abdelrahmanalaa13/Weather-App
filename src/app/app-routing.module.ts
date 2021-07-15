@@ -18,3 +18,5 @@ const routes: Routes = [
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
+
+// adding the router module to allow the app to be more scalable
