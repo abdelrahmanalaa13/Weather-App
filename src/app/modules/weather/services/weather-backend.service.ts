@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 })
 export class WeatherBackendService {
 
-  DarkSkyAPIKey = 'a177f8481c31fa96c3f95ad4f4f84610';
+  DarkSkyAPIKey = ''; // add your <DarkSky API Key> here
   IpInfoToken = '3338fff7538b89';
   constructor(private _http: HttpClient) { }
 
