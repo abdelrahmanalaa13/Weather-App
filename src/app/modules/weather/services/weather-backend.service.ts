@@ -8,14 +8,14 @@ export class WeatherBackendService {
  headers = new HttpHeaders().set('content-type', 'application/json');
 
   DarkSkyAPIKey = ''; // add your <DarkSky API Key> here
-  IpInfoToken = '3338fff7538b89';
+  openCageDataAPIKey = ''; // add your <openCageData API Key> here
   constructor(private _http: HttpClient) { }
 
   getForecast(latitude, longitude) {
     return this._http.get('https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/' + this.DarkSkyAPIKey + '/' + latitude + ',' + longitude, { headers: this.headers });
   }
 
-  getLocation() {
-    return this._http.get('http://ipinfo.io?token=' + this.IpInfoToken);
+  getLocation(latitude, longitude) {
+    return this._http.get('https://api.opencagedata.com/geocode/v1/json?q='+latitude+'%2C+'+longitude+'&key='+this.openCageDataAPIKey);
   }
 }

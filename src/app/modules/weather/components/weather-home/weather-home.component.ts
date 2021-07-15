@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { WeatherDetails } from '../../models/weather-details.model';
 import { Forecast } from '../../models/forecast.model';
-import { forkJoin } from 'rxjs';
+import { forkJoin, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { WeatherBackendService } from '../../services/weather-backend.service';
 import { WeatherService } from '../../services/weather.service';
 
@@ -38,6 +39,10 @@ export class WeatherHomeComponent implements OnInit {
   getLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
+        if(!position) {
+          alert("Couldn't get your location");
+          return;
+        }
         this.latitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
         this.getWeatherDetails();
@@ -46,13 +51,19 @@ export class WeatherHomeComponent implements OnInit {
   }
 
   getWeatherDetails() {
-    forkJoin([
-      this.weatherBackendService.getForecast(this.latitude, this.longitude),
-      this.weatherBackendService.getLocation(),
-    ]).subscribe(([forecast, locationDetails]) => {
-      this.setForecast(forecast);
-      this.setCity(locationDetails);
-    });
+    const getForecast = this.weatherBackendService
+      .getForecast(this.latitude, this.longitude)
+      .pipe(catchError((error) => of(error)));
+    const getLocation = this.weatherBackendService
+      .getLocation(this.latitude, this.longitude)
+      .pipe(catchError((error) => of(error)));
+    forkJoin([getForecast, getLocation]).subscribe(
+      ([forecast, locationDetails]) => {
+        this.setForecast(forecast);
+        this.setCity(locationDetails);
+      },
+      (error) => console.error(error)
+    );
   }
 
   setForecast(forecast) {
@@ -84,7 +95,9 @@ export class WeatherHomeComponent implements OnInit {
   }
 
   setCity(locationDetails) {
-    this.currentCity = locationDetails.city;
+    if (locationDetails.results) {
+      this.currentCity = locationDetails.results[0].components.city;
+    }
   }
 
   convertScale(scale) {

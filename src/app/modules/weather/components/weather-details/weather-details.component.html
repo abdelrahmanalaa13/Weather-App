@@ -1,7 +1,7 @@
 <section class="main-details">
   <div>
     <div class="city-details">
-      <h2>{{ cityName }}</h2>
+      <h2 *ngIf="cityName; else noCityName">{{ cityName }}</h2>
       <p>{{ forecast.time * 1000 | date: "fullDate" }}</p>
     </div>
     <div class="state">
@@ -31,3 +31,5 @@
     <p class="temp-note">{{ forecast.daySummary }}</p>
   </div>
 </section>
+
+<ng-template #noCityName> [Couldn't get city name] </ng-template>
