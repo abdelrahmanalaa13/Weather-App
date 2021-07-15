@@ -13,6 +13,11 @@ Simple weather web application that displays the current temperature based on us
 - Display the daily forecast.
 - Display city name.
 
+# Used 3rd party APIs
+- Forecast data getting by DarkSky Api
+- Location data getting by OpenCageData Api
+
+
 ## Development init
 Run `npm i` for installing the needed node packages
 
